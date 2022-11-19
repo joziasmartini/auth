@@ -2,10 +2,12 @@
 
 ### Introduction
 
-A frontend and backend used for authentication studies
+A frontend and backend used for authentication studies.
 
 ### Technologies
 
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Node](https://nodejs.org/)
+- [Express](https://expressjs.com/)
