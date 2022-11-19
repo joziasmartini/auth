@@ -1,5 +1,6 @@
 import { LockKey } from "phosphor-react";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -7,6 +8,11 @@ export default function Login() {
 
   const login = () => {
     console.log(`Logging in: ${username} ${password}`);
+    axios
+      .post("localhost:5000/api/login", { username, password })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
