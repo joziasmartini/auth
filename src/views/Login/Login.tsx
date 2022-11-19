@@ -1,6 +1,14 @@
 import { LockKey } from "phosphor-react";
+import { useState } from "react";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = () => {
+    console.log(`Logging in: ${username} ${password}`);
+  };
+
   return (
     <section className="font-ibm h-full gradient-form bg-gray-200 md:h-screen">
       <div className="container py-6 px-24 h-full mx-auto">
@@ -28,14 +36,16 @@ export default function Login() {
                           className="form-control block w-full px-6 py-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                           id="exampleFormControlInput1"
                           placeholder="Username"
+                          onChange={(e) => setUsername(e.target.value)}
                         />
                       </div>
                       <div className="mb-4">
                         <input
                           type="password"
                           className="form-control block w-full px-6 py-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                          id="exampleFormControlInput1"
+                          id="exampleFormControlInput2"
                           placeholder="Password"
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
                       <div className="text-center pt-1 mb-6 pb-1">
@@ -44,6 +54,7 @@ export default function Login() {
                           type="button"
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="light"
+                          onClick={() => login()}
                         >
                           Log in
                         </button>
