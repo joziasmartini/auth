@@ -10,10 +10,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  req.headers["content-type"] === "application/json";
-  req.headers["authorization"] === "Bearer";
+  const jwt =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiZXhwIjoxNTE2MjM5MDIyfQ.E9bQ6QAil4HpH825QC5PtjNGEDQTtMpcj0SO2W8vmag";
 
-  res.send("Hello World!");
+  res.send({
+    token: jwt,
+  });
 });
 
 app.listen(port, () => {
