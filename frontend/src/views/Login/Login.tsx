@@ -6,21 +6,39 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = () => {
+  const login = async () => {
     console.log(`Logging in: ${username} ${password}`);
-    axios
-      .post("http://localhost:5000/login", { username, password })
+    await axios
+      .post("http://localhost:5000/login", {
+        headers: {
+          Authorization: `Basic ${window.btoa(`${username}:${password}`)}`,
+        },
+      })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem(
+          "tokenExpiration",
+          JSON.parse(window.atob(res.data.token.split(".")[1])).exp
+        );
+
+        console.log("Token: " + localStorage.getItem("token"));
+        console.log(
+          "Token Expiration: " + localStorage.getItem("tokenExpiration")
+        );
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
   const getUser = () => {
-    const accessToken = "WQNEIOQWE.QUWHEIUQWE.QWUHEUIQWHE";
+    const accessToken = "Bearer " + localStorage.getItem("token");
     axios
-      .get("https://api.github.com/user", {
+      .get("http://api.github.com/user", {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: accessToken,
         },
       })
       .then((res) => {
