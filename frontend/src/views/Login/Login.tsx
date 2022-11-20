@@ -8,10 +8,24 @@ export default function Login() {
 
   const login = () => {
     console.log(`Logging in: ${username} ${password}`);
+    axios.post("localhost:5000/login", { username, password }).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const getUser = () => {
+    const accessToken = "WQNEIOQWE.QUWHEIUQWE.QWUHEUIQWHE";
     axios
-      .post("localhost:5000/api/login", { username, password })
+      .get("https://api.github.com/user", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -25,12 +39,12 @@ export default function Login() {
                 <div className="lg:w-6/12 px-4 md:px-0">
                   <div className="md:p-12 md:mx-6">
                     <div className="text-center">
-                      <div className="grid place-content-center mt-6">
-                        <LockKey size={38} />
+                      <div className="grid place-content-center my-6">
+                        <LockKey size={58} />
                       </div>
-                      <h4 className="text-4xl font-bold mt-6 mb-6 pb-1">
+                      {/* <h4 className="text-4xl font-bold mt-6 mb-6 pb-1">
                         Auth
-                      </h4>
+                      </h4> */}
                     </div>
                     <form>
                       <p className="mb-4 text-center">
