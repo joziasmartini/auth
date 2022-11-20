@@ -8,9 +8,11 @@ export default function Login() {
 
   const login = () => {
     console.log(`Logging in: ${username} ${password}`);
-    axios.post("localhost:5000/login", { username, password }).then((res) => {
-      console.log(res);
-    });
+    axios
+      .post("http://localhost:5000/login", { username, password })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   const getUser = () => {
